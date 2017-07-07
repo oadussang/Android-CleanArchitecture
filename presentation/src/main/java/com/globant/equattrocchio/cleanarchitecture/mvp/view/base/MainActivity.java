@@ -4,11 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.globant.equattrocchio.cleanarchitecture.R;
-import com.globant.equattrocchio.cleanarchitecture.mvp.presenter.imagesPresenter;
 
 public class MainActivity extends AppCompatActivity {
-
-    private imagesPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
