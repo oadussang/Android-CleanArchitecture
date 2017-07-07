@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/equattrocchio/AndroidStudioProjects/CleanArchitecture/presentation/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/equattrocchio/AndroidStudioProjects/CleanArchitecture/presentation/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_e1f13b8bf6443a1c29f36ea22dcef05c64bfa499/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/equattrocchio/AndroidStudioProjects/CleanArchitecture/presentation/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="6511b7dc1431bb38555ce4c5a3b7bf4459e6c265">
+        <dex dex="/home/equattrocchio/AndroidStudioProjects/CleanArchitecture/presentation/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_b5546184332a6a6f38b8116bfa0915a9f47eef6e/classes.dex" />
+    </item>
+
+</items>
