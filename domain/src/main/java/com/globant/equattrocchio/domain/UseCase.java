@@ -1,7 +1,5 @@
 package com.globant.equattrocchio.domain;
 
-//import com.globant.equattrocchio.domain.Preconditions;
-
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;

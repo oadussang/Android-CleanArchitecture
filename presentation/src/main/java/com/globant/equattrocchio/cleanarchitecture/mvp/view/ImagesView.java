@@ -1,11 +1,10 @@
 package com.globant.equattrocchio.cleanarchitecture.mvp.view;
 
-import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.globant.equattrocchio.cleanarchitecture.R;
 import com.globant.equattrocchio.cleanarchitecture.util.bus.RxBus;
-import com.globant.equattrocchio.cleanarchitecture.util.bus.observers.BooleanBusObserver;
 import com.globant.equattrocchio.cleanarchitecture.util.bus.observers.CallServiceButtonObserver;
 
 import butterknife.BindView;
@@ -16,7 +15,7 @@ public class ImagesView extends ActivityView {
 
     @BindView(R.id.tv_incoming_json) TextView tvlabel;
 
-    public ImagesView(Activity activity) {
+    public ImagesView(AppCompatActivity activity) {
         super(activity);
         ButterKnife.bind(this, activity);
     }
@@ -30,4 +29,7 @@ public class ImagesView extends ActivityView {
         RxBus.post(new CallServiceButtonObserver.CallServiceButtonPressed());
     }
 
+    public void showError() {
+        tvlabel.setText(R.string.connection_error);
+    }
 }
