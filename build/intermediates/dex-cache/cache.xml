@@ -3,6 +3,24 @@
 
     <item
         is-multidex="true"
+        jar="/home/equattrocchio/AndroidStudioProjects/CleanArchitecture/presentation/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="a8bffd798b5a10c1da50e6ca41799f13f7b5966e">
+        <dex dex="/home/equattrocchio/AndroidStudioProjects/CleanArchitecture/presentation/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_b5546184332a6a6f38b8116bfa0915a9f47eef6e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/equattrocchio/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.8.0/5ea7af56cc7c567ed9856d99efb30740e9b17ff/okio-1.8.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="05ea7af56cc7c567ed9856d99efb30740e9b17ff">
+        <dex dex="/home/equattrocchio/AndroidStudioProjects/CleanArchitecture/presentation/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.8.0_9a84488314cd6a585aee2a97ec39fbe991933271/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/equattrocchio/AndroidStudioProjects/CleanArchitecture/presentation/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
@@ -12,12 +30,39 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/equattrocchio/AndroidStudioProjects/CleanArchitecture/presentation/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/home/equattrocchio/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
-        sha1="6511b7dc1431bb38555ce4c5a3b7bf4459e6c265">
-        <dex dex="/home/equattrocchio/AndroidStudioProjects/CleanArchitecture/presentation/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_b5546184332a6a6f38b8116bfa0915a9f47eef6e/classes.dex" />
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/home/equattrocchio/AndroidStudioProjects/CleanArchitecture/presentation/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.1.0_611816e9336761b9f52fc6ae63d2de8a578e83bf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/equattrocchio/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/home/equattrocchio/AndroidStudioProjects/CleanArchitecture/presentation/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.7_e3cf9c7819124ddfe5fe3126d5dd64235607fe00/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/equattrocchio/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.3.0/2b802460eea20f8f2ad9c08c74e0f14718e88aa9/okhttp-3.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="2b802460eea20f8f2ad9c08c74e0f14718e88aa9">
+        <dex dex="/home/equattrocchio/AndroidStudioProjects/CleanArchitecture/presentation/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.3.0_1bfe8401c076af2d816de30db13482f9a69e1702/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/equattrocchio/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.1.0/aa557d71ead91cbf26e0c316a0f593d168303309/converter-gson-2.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
+        <dex dex="/home/equattrocchio/AndroidStudioProjects/CleanArchitecture/presentation/build/intermediates/transforms/dex/debug/folders/1000/10/converter-gson-2.1.0_e5203efe431ba55319e3e5a005c8c4a5ee70af28/classes.dex" />
     </item>
 
 </items>
