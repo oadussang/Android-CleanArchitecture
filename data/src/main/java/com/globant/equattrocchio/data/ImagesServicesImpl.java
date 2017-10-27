@@ -31,7 +31,7 @@ public class ImagesServicesImpl implements ImagesServices {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
                 //todo: show the response.body() on the ui
-                observer.onNext(new Gson().toJson(response.body()));
+                observer.onNext(new Gson().toJson(response.body().getImages()));
 
             }
 

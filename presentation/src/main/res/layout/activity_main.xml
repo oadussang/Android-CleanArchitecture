@@ -4,14 +4,23 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
         <Button
             android:id="@+id/btn_call_service"
             android:text="@string/call_service"
             android:layout_width="@dimen/btn_widht"
             android:layout_height="@dimen/btn_height" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_image_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
         <TextView
             android:id="@+id/tv_incoming_json"
-            android:text="@string/incoming_json"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/tv_height" />
+            android:layout_height="@dimen/tv_height"
+            android:text="@string/incoming_json"
+            android:visibility="gone"/>
+
 </LinearLayout>

@@ -6,7 +6,12 @@ import com.globant.equattrocchio.cleanarchitecture.util.bus.RxBus;
 import com.globant.equattrocchio.cleanarchitecture.mvp.view.ImagesView;
 import com.globant.equattrocchio.cleanarchitecture.util.bus.observers.CallServiceButtonObserver;
 import com.globant.equattrocchio.data.ImagesServicesImpl;
+import com.globant.equattrocchio.data.response.Image;
 import com.globant.equattrocchio.domain.GetLatestImagesUseCase;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.List;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DefaultObserver;
@@ -24,7 +29,9 @@ public class ImagesPresenter {
     }
 
     public void onResponseReceived(String jsonResponse) {
-        view.showText(jsonResponse);//todo: aca va el string que me devuelva el execute del usecase
+        List<Image> images = new Gson().fromJson(jsonResponse, new TypeToken<List<Image>>(){}.getType());
+        //view.showText("");//todo: aca va el string que me devuelva el execute del usecase
+        view.setCardViewList(images);
     }
 
     private void onCallServiceButtonPressed() {
@@ -55,8 +62,6 @@ public class ImagesPresenter {
     private void loadFromPreferences(){
        // view.showText("EL TEXTO QUE ME TRAGIA DE LAS PREFERENCES");// todo: traerme el texto de las preferences
     }
-
-
 
 
 

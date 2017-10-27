@@ -1,5 +1,7 @@
 package com.globant.equattrocchio.domain;
 
+import java.util.List;
+
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
@@ -18,10 +20,6 @@ public abstract class UseCase<T, Params> {
         Preconditions.checkNotNull(observer);
         this.buildUseCaseObservable(observer, params);
         addDisposable(observer);
-    }
-
-    public void execute(Params params) {
-        this.buildUseCaseObservable(null, params);
     }
 
     /**
