@@ -23,19 +23,17 @@ public class ImagesPresenter {
         this.getLatestImagesUseCase = getLatestImagesUseCase;
     }
 
-    public void onCountButtonPressed() {
-
-        view.showText(new String(""));//todo: aca va el string que me devuelva el execute del usecase
-
-
+    public void onResponseReceived(String jsonResponse) {
+        view.showText(jsonResponse);//todo: aca va el string que me devuelva el execute del usecase
     }
 
     private void onCallServiceButtonPressed() {
 
-        getLatestImagesUseCase.execute(new DisposableObserver<Boolean>() {
+        getLatestImagesUseCase.execute(new DisposableObserver<String>() {
+
             @Override
-            public void onNext(@NonNull Boolean aBoolean) {
-                loadFromPreferences();
+            public void onNext(@NonNull String jsonResponse) {
+                onResponseReceived(jsonResponse);
             }
 
             @Override
