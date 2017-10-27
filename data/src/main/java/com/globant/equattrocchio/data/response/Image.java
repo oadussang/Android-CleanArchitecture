@@ -16,6 +16,9 @@ public class Image {
     @SerializedName("source_id")
     @Expose
     private Object sourceId;
+    @SerializedName("site")
+    @Expose
+    private String site;
 
     public Integer getId() {
         return id;
@@ -49,4 +52,7 @@ public class Image {
         this.sourceId = sourceId;
     }
 
+    public String getSite() { return site; }
+
+    public void setSite(String site) { this.site = site; }
 }

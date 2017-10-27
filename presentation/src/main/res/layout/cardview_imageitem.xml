@@ -2,14 +2,14 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                                     xmlns:app="http://schemas.android.com/apk/res-auto"
                                     xmlns:tools="http://schemas.android.com/tools"
+                                    android:id="@+id/card_splashbase_img_item"
                                     android:layout_width="match_parent"
                                     android:layout_height="200dp"
-                                    app:cardBackgroundColor="@android:color/background_light"
-                                    app:cardElevation="5dp"
                                     android:layout_margin="8dp"
                                     android:layout_marginBottom="4dp"
                                     android:orientation="vertical"
-    >
+                                    app:cardBackgroundColor="@android:color/background_light"
+                                    app:cardElevation="5dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -37,8 +37,8 @@
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:textAlignment="center"
             android:background="@android:color/holo_green_light"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>

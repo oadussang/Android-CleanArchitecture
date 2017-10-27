@@ -8,6 +8,7 @@ import com.globant.equattrocchio.cleanarchitecture.R;
 import com.globant.equattrocchio.cleanarchitecture.mvp.presenter.ImagesPresenter;
 import com.globant.equattrocchio.cleanarchitecture.mvp.view.ImagesView;
 import com.globant.equattrocchio.data.ImagesServicesImpl;
+import com.globant.equattrocchio.domain.GetImageByIdUseCase;
 import com.globant.equattrocchio.domain.GetLatestImagesUseCase;
 
 import butterknife.BindView;

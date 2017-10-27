@@ -10,12 +10,16 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.globant.equattrocchio.cleanarchitecture.R;
+import com.globant.equattrocchio.cleanarchitecture.util.bus.RxBus;
+import com.globant.equattrocchio.cleanarchitecture.util.bus.observers.ImageItemSelectedObserver;
 import com.globant.equattrocchio.data.response.Image;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnItemClick;
 
 public class ImageItemAdapter extends RecyclerView.Adapter<ImageItemAdapter.ImageItemViewHolder> {
     private List<Image> mData;
@@ -58,6 +62,11 @@ public class ImageItemAdapter extends RecyclerView.Adapter<ImageItemAdapter.Imag
             super(itemView);
             view = itemView;
             ButterKnife.bind(this, itemView);
+        }
+
+        @OnClick(R.id.card_splashbase_img_item)
+        public void onImageItemSelected(){
+            RxBus.post(new ImageItemSelectedObserver.ImageItemSelected(idLabel.getText().toString()));
         }
     }
 
