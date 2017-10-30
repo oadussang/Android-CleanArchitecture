@@ -1,11 +1,11 @@
 package com.globant.equattrocchio.cleanarchitecture.mvp.view;
 
+import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.globant.equattrocchio.cleanarchitecture.R;
@@ -54,10 +54,10 @@ public class ImagesView extends ActivityView {
         tvlabel.setText(R.string.connection_error);
     }
 
-    public void startDetailsFragment(String image) {
-        FragmentManager fragmentManger = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManger.beginTransaction();
-        fragmentTransaction.add(R.id.linear_parent, new ImageDetailsFragment());
-        fragmentTransaction.commit();
+    private static final String DIALOG_TAG = "dialog";
+    public void startDetailsFragment(Image image) {
+        DialogFragment dialog = new ImageDetailsDialogFragment().newInstance(image.getUrl(), String.valueOf(image.getId()), image.getCopyright(), image.getSite());
+        dialog.show(getFragmentManager(), DIALOG_TAG);
+
     }
 }

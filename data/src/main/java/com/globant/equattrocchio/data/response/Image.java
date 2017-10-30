@@ -19,6 +19,10 @@ public class Image {
     @SerializedName("site")
     @Expose
     private String site;
+    @SerializedName("copyright")
+    @Expose
+    private String copyright;
+
 
     public Integer getId() {
         return id;
@@ -55,4 +59,12 @@ public class Image {
     public String getSite() { return site; }
 
     public void setSite(String site) { this.site = site; }
+
+    public String getCopyright() {
+        return copyright;
+    }
+
+    public void setCopyright(String copyright) {
+        this.copyright = copyright;
+    }
 }

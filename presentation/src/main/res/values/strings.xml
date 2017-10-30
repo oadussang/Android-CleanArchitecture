@@ -7,6 +7,6 @@
 
     <string name="image_id_label">Image Id:</string>
     <string name="image_copyright_label">Copyight:</string>
-    <string name="image_site_label">Site/Location:</string>
+    <string name="image_site_label">Source Site:</string>
 
 </resources>

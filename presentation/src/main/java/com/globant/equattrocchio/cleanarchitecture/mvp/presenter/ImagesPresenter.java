@@ -23,6 +23,7 @@ public class ImagesPresenter {
 
     private ImagesView view;
     private GetLatestImagesUseCase getLatestImagesUseCase;
+    private GetImageByIdUseCase getImageByIdUseCase;
 
     public ImagesPresenter(ImagesView view, GetLatestImagesUseCase getLatestImagesUseCase) {
         this.view = view;
@@ -35,9 +36,29 @@ public class ImagesPresenter {
         view.setCardViewList(images);
     }
 
+    public void onImageResponseReceived(String jsonResponse) {
+        Image image = new Gson().fromJson(jsonResponse, new TypeToken<Image>(){}.getType());
+        view.startDetailsFragment(image);
+    }
 
-    private void onImageItemSelected(String imageId) {
-        view.startDetailsFragment(imageId);
+    private void onImageItemSelected(final String imageId) {
+        getImageByIdUseCase = new GetImageByIdUseCase(new ImagesServicesImpl());
+        getImageByIdUseCase.execute(new DisposableObserver<String>() {
+            @Override
+            public void onNext(@NonNull String jsonResponse) {
+                onImageResponseReceived(jsonResponse);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                view.showError();
+            }
+
+            @Override
+            public void onComplete() {
+                new ImagesServicesImpl().getImageById(null, imageId);
+            }
+        },imageId);
     }
 
     private void onCallServiceButtonPressed() {
