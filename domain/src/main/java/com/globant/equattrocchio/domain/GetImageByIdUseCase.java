@@ -2,9 +2,11 @@ package com.globant.equattrocchio.domain;
 
 import com.globant.equattrocchio.domain.service.ImagesServices;
 
+import java.util.WeakHashMap;
+
 import io.reactivex.observers.DisposableObserver;
 
-public class GetImageByIdUseCase extends UseCase<String,String> {
+public class GetImageByIdUseCase extends UseCase<Object,String> {
 
     private ImagesServices imagesServices;
 
@@ -14,7 +16,7 @@ public class GetImageByIdUseCase extends UseCase<String,String> {
     }
 
     @Override
-    void buildUseCaseObservable(DisposableObserver<String> observer, String imageId) {
+    void buildUseCaseObservable(DisposableObserver<Object> observer, String imageId) {
         imagesServices.getImageById(observer, imageId);
     }
 }

@@ -10,43 +10,37 @@ import com.globant.equattrocchio.data.ImagesServicesImpl;
 import com.globant.equattrocchio.data.response.Image;
 import com.globant.equattrocchio.domain.GetImageByIdUseCase;
 import com.globant.equattrocchio.domain.GetLatestImagesUseCase;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.annotations.NonNull;
-import io.reactivex.observers.DefaultObserver;
 import io.reactivex.observers.DisposableObserver;
 
 public class ImagesPresenter {
 
-    private ImagesView view;
-    private GetLatestImagesUseCase getLatestImagesUseCase;
-    private GetImageByIdUseCase getImageByIdUseCase;
+    private final ImagesView view;
+    private final GetLatestImagesUseCase getLatestImagesUseCase;
 
     public ImagesPresenter(ImagesView view, GetLatestImagesUseCase getLatestImagesUseCase) {
         this.view = view;
         this.getLatestImagesUseCase = getLatestImagesUseCase;
     }
 
-    public void onListResponseReceived(String jsonResponse) {
-        List<Image> images = new Gson().fromJson(jsonResponse, new TypeToken<List<Image>>(){}.getType());
-        //view.showText("");//todo: aca va el string que me devuelva el execute del usecase
+    private void onListResponseReceived(List<Image> images) {
         view.setCardViewList(images);
     }
 
-    public void onImageResponseReceived(String jsonResponse) {
-        Image image = new Gson().fromJson(jsonResponse, new TypeToken<Image>(){}.getType());
+    private void onImageResponseReceived(Image image) {
         view.startDetailsFragment(image);
     }
 
     private void onImageItemSelected(final String imageId) {
-        getImageByIdUseCase = new GetImageByIdUseCase(new ImagesServicesImpl());
-        getImageByIdUseCase.execute(new DisposableObserver<String>() {
+        GetImageByIdUseCase getImageByIdUseCase = new GetImageByIdUseCase(new ImagesServicesImpl());
+        getImageByIdUseCase.execute(new DisposableObserver<Object>() {
             @Override
-            public void onNext(@NonNull String jsonResponse) {
-                onImageResponseReceived(jsonResponse);
+            public void onNext(@NonNull Object response) {
+                onImageResponseReceived((Image) response);
             }
 
             @Override
@@ -58,34 +52,38 @@ public class ImagesPresenter {
             public void onComplete() {
                 new ImagesServicesImpl().getImageById(null, imageId);
             }
-        },imageId);
+        }, imageId);
     }
 
     private void onCallServiceButtonPressed() {
-        getLatestImagesUseCase.execute(new DisposableObserver<String>() {
+        getLatestImagesUseCase.execute(new DisposableObserver<List<Object>>() {
 
             @Override
-            public void onNext(@NonNull String jsonResponse) {
-                onListResponseReceived(jsonResponse);
+            public void onNext(@NonNull List<Object> imagesObj) {
+                List<Image> images = new ArrayList<>(imagesObj.size());
+                for (Object imageObj :imagesObj) {
+                    images.add((Image) imageObj);
+                }
+                onListResponseReceived(images);
             }
 
             @Override
             public void onError(@NonNull Throwable e) {
-               view.showError();
+                view.showError();
             }
 
             @Override
             public void onComplete() {
                 new ImagesServicesImpl().getLatestImages(null);
             }
-        },null);
+        }, null);
         //todo acá tengo que llamar a la domain layer para que llame a la data layer y haga el llamdo al servicio
     }
 
     public void register() {
         Activity activity = view.getActivity();
 
-        if (activity==null){
+        if (activity == null) {
             return;
         }
 
@@ -106,7 +104,7 @@ public class ImagesPresenter {
     public void unregister() {
         Activity activity = view.getActivity();
 
-        if (activity==null){
+        if (activity == null) {
             return;
         }
         RxBus.clear(activity);

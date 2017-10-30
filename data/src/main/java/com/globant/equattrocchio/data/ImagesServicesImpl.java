@@ -6,6 +6,10 @@ import com.globant.equattrocchio.data.service.api.SplashbaseApi;
 import com.globant.equattrocchio.domain.service.ImagesServices;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.WeakHashMap;
+
 import io.reactivex.Observer;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,7 +22,7 @@ public class ImagesServicesImpl implements ImagesServices {
     private static final String URL= "http://splashbase.co/";
 
     @Override
-    public void getLatestImages(final Observer<String> observer) {
+    public void getLatestImages(final Observer<List<Object>> observer) {
         Retrofit retrofit = new Retrofit.Builder().
                 baseUrl(URL).
                 addConverterFactory(GsonConverterFactory.create())
@@ -29,8 +33,7 @@ public class ImagesServicesImpl implements ImagesServices {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
                 //todo: show the response.body() on the ui
-                observer.onNext(new Gson().toJson(response.body().getImages()));
-
+                observer.onNext(new ArrayList<Object>(response.body().getImages()));
             }
 
             @Override
@@ -41,7 +44,7 @@ public class ImagesServicesImpl implements ImagesServices {
     }
 
     @Override
-    public void getImageById(final Observer<String> observer, String imageId) {
+    public void getImageById(final Observer<Object> observer, String imageId) {
         Retrofit retrofit = new Retrofit.Builder().
                 baseUrl(URL).
                 addConverterFactory(GsonConverterFactory.create())
@@ -51,7 +54,13 @@ public class ImagesServicesImpl implements ImagesServices {
         call.enqueue(new Callback<Image>() {
             @Override
             public void onResponse(Call<Image> call, Response<Image> response) {
-                observer.onNext(new Gson().toJson(response.body()));
+                WeakHashMap<String, String> imageParams = new WeakHashMap<>();
+                imageParams.put("key1",String.valueOf(response.body().getId()));
+                imageParams.put("key2",String.valueOf(response.body().getUrl()));
+                imageParams.put("key3",String.valueOf(response.body().getCopyright()));
+                imageParams.put("key4",String.valueOf(response.body().getSite()));
+                observer.onNext(response.body());
+                //new Gson().toJson(response.body().)
             }
             @Override
             public void onFailure(Call<Image> call, Throwable t) {
