@@ -54,13 +54,7 @@ public class ImagesServicesImpl implements ImagesServices {
         call.enqueue(new Callback<Image>() {
             @Override
             public void onResponse(Call<Image> call, Response<Image> response) {
-                WeakHashMap<String, String> imageParams = new WeakHashMap<>();
-                imageParams.put("key1",String.valueOf(response.body().getId()));
-                imageParams.put("key2",String.valueOf(response.body().getUrl()));
-                imageParams.put("key3",String.valueOf(response.body().getCopyright()));
-                imageParams.put("key4",String.valueOf(response.body().getSite()));
                 observer.onNext(response.body());
-                //new Gson().toJson(response.body().)
             }
             @Override
             public void onFailure(Call<Image> call, Throwable t) {
