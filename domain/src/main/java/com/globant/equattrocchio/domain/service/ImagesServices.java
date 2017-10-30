@@ -1,8 +1,10 @@
 package com.globant.equattrocchio.domain.service;
 
+import java.util.List;
+
 import io.reactivex.Observer;
 
 public interface ImagesServices {
 
-    void getLatestImages(Observer<String> observer);
+    void getLatestImages(Observer<List<Object>> observer);
 }

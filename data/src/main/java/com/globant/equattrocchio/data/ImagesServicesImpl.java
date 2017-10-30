@@ -5,6 +5,9 @@ import com.globant.equattrocchio.data.service.api.SplashbaseApi;
 import com.globant.equattrocchio.domain.service.ImagesServices;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.reactivex.Observer;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,7 +20,7 @@ public class ImagesServicesImpl implements ImagesServices {
     private static final String URL= "http://splashbase.co/";
 
     @Override
-    public void getLatestImages(final Observer<String> observer) {
+    public void getLatestImages(final Observer<List<Object>> observer) {
         Retrofit retrofit = new Retrofit.Builder().
                 baseUrl(URL).
                 addConverterFactory(GsonConverterFactory.create())
@@ -31,7 +34,7 @@ public class ImagesServicesImpl implements ImagesServices {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
                 //todo: show the response.body() on the ui
-                observer.onNext(new Gson().toJson(response.body().getImages()));
+                observer.onNext(new ArrayList<Object>(response.body().getImages()));
 
             }
 
