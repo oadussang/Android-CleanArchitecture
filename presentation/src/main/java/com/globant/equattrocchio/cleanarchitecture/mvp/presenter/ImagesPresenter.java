@@ -5,11 +5,13 @@ import android.app.Activity;
 import com.globant.equattrocchio.cleanarchitecture.util.bus.RxBus;
 import com.globant.equattrocchio.cleanarchitecture.mvp.view.ImagesView;
 import com.globant.equattrocchio.cleanarchitecture.util.bus.observers.CallServiceButtonObserver;
+import com.globant.equattrocchio.cleanarchitecture.util.bus.observers.CallUpdateServiceButtonObserver;
 import com.globant.equattrocchio.cleanarchitecture.util.bus.observers.ImageItemSelectedObserver;
 import com.globant.equattrocchio.data.ImagesServicesImpl;
 import com.globant.equattrocchio.data.response.Image;
 import com.globant.equattrocchio.domain.GetImageByIdUseCase;
 import com.globant.equattrocchio.domain.GetLatestImagesUseCase;
+import com.globant.equattrocchio.domain.GetUpdateLatestImagesUseCase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +82,31 @@ public class ImagesPresenter {
         //todo acá tengo que llamar a la domain layer para que llame a la data layer y haga el llamdo al servicio
     }
 
+    private void onCallUpdateServiceButtonPressed() {
+        GetUpdateLatestImagesUseCase getUpdateLatestImagesUseCase = new GetUpdateLatestImagesUseCase(new ImagesServicesImpl());
+        getUpdateLatestImagesUseCase.execute(new DisposableObserver<List<Object>>() {
+
+            @Override
+            public void onNext(@NonNull List<Object> imagesObj) {
+                List<Image> images = new ArrayList<>(imagesObj.size());
+                for (Object imageObj :imagesObj) {
+                    images.add((Image) imageObj);
+                }
+                onListResponseReceived(images);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                view.showError();
+            }
+
+            @Override
+            public void onComplete() {
+                new ImagesServicesImpl().getLatestImagesUpdate(null);
+            }
+        }, null);
+    }
+
     public void register() {
         Activity activity = view.getActivity();
 
@@ -91,6 +118,12 @@ public class ImagesPresenter {
             @Override
             public void onEvent(CallServiceButtonPressed event) {
                 onCallServiceButtonPressed();
+            }
+        });
+        RxBus.subscribe(activity, new CallUpdateServiceButtonObserver() {
+            @Override
+            public void onEvent(CallUpdateServiceButtonPressed value) {
+                onCallUpdateServiceButtonPressed();
             }
         });
         RxBus.subscribe(activity, new ImageItemSelectedObserver() {

@@ -12,6 +12,7 @@ import com.globant.equattrocchio.cleanarchitecture.R;
 import com.globant.equattrocchio.cleanarchitecture.mvp.view.base.ImageItemAdapter;
 import com.globant.equattrocchio.cleanarchitecture.util.bus.RxBus;
 import com.globant.equattrocchio.cleanarchitecture.util.bus.observers.CallServiceButtonObserver;
+import com.globant.equattrocchio.cleanarchitecture.util.bus.observers.CallUpdateServiceButtonObserver;
 import com.globant.equattrocchio.data.response.Image;
 
 import java.util.List;
@@ -46,9 +47,7 @@ public class ImagesView extends ActivityView {
     }
 
     @OnClick(R.id.btn_call_service)
-    public void callServiceBtnPressed() {
-        RxBus.post(new CallServiceButtonObserver.CallServiceButtonPressed());
-    }
+    public void callServiceBtnPressed() { RxBus.post(new CallServiceButtonObserver.CallServiceButtonPressed()); }
 
     public void showError() {
         tvlabel.setText(R.string.connection_error);
@@ -56,8 +55,11 @@ public class ImagesView extends ActivityView {
 
     private static final String DIALOG_TAG = "dialog";
     public void startDetailsFragment(Image image) {
-        DialogFragment dialog = new ImageDetailsDialogFragment().newInstance(image.getUrl(), String.valueOf(image.getId()), image.getCopyright(), image.getSite());
+        DialogFragment dialog = new ImageDetailsDialogFragment().newInstance(image.getUrl(), String.valueOf(image.getImageId()), image.getCopyright(), image.getSite());
         dialog.show(getFragmentManager(), DIALOG_TAG);
 
     }
+
+    @OnClick(R.id.fab_refresh_image_list)
+    public void refreshImageList(){ RxBus.post(new CallUpdateServiceButtonObserver.CallUpdateServiceButtonPressed()); }
 }

@@ -1,35 +1,49 @@
 package com.globant.equattrocchio.data.response;
 
+import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Image {
+@Table(name = "Images", id = "id")
+public class Image extends Model {
     @SerializedName("id")
     @Expose
-    private Integer id;
+    @Column(name = "ImageId")
+    private Integer imageId;
+
     @SerializedName("url")
     @Expose
+    @Column(name = "Url")
     private String url;
+
     @SerializedName("large_url")
     @Expose
+    @Column(name = "LargeUrl")
     private String largeUrl;
+
     @SerializedName("source_id")
     @Expose
-    private Object sourceId;
+    @Column(name = "SourceId")
+    private String sourceId;
+
     @SerializedName("site")
     @Expose
+    @Column(name = "Site")
     private String site;
+
     @SerializedName("copyright")
     @Expose
+    @Column(name = "Copyright")
     private String copyright;
 
-
-    public Integer getId() {
-        return id;
+    public Integer getImageId() {
+        return imageId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setImageId(Integer imageId) {
+        this.imageId = imageId;
     }
 
     public String getUrl() {
@@ -48,17 +62,21 @@ public class Image {
         this.largeUrl = largeUrl;
     }
 
-    public Object getSourceId() {
+    public String getSourceId() {
         return sourceId;
     }
 
-    public void setSourceId(Object sourceId) {
+    public void setSourceId(String sourceId) {
         this.sourceId = sourceId;
     }
 
-    public String getSite() { return site; }
+    public String getSite() {
+        return site;
+    }
 
-    public void setSite(String site) { this.site = site; }
+    public void setSite(String site) {
+        this.site = site;
+    }
 
     public String getCopyright() {
         return copyright;

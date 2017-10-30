@@ -39,7 +39,7 @@ public class ImageItemAdapter extends RecyclerView.Adapter<ImageItemAdapter.Imag
 
     @Override
     public void onBindViewHolder(ImageItemViewHolder holder, int position) {
-        holder.idLabel.setText(String.valueOf(mData.get(position).getId()));
+        holder.idLabel.setText(String.valueOf(mData.get(position).getImageId()));
         Glide
                 .with(holder.view)
                 .load(mData.get(position).getUrl())
