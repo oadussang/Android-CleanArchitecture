@@ -1,9 +1,8 @@
 package com.globant.equattrocchio.data;
 
-import com.globant.equattrocchio.data.response.Result;
 import com.globant.equattrocchio.data.service.api.SplashbaseApi;
 import com.globant.equattrocchio.domain.service.ImagesServices;
-import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import io.reactivex.Observer;
 import retrofit2.Call;
@@ -25,18 +24,20 @@ public class ImagesServicesImpl implements ImagesServices {
 
         SplashbaseApi api  = retrofit.create(SplashbaseApi.class);
 
-        Call<Result> call = api.getImages();
+        Call<JsonObject> call = api.getImages();
 
-        call.enqueue(new Callback<Result>() {
+        call.enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(Call<Result> call, Response<Result> response) {
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 //todo: show the response.body() on the ui
-                observer.onNext(new Gson().toJson(response.body()));
+                if(response.body() != null) {
+                    observer.onNext(response.body().toString());
+                }
 
             }
 
             @Override
-            public void onFailure(Call<Result> call, Throwable t) {
+            public void onFailure(Call<JsonObject> call, Throwable t) {
                 //todo: update the UI with a connection error message
             }
         });
