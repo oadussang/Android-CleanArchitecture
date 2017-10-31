@@ -1,6 +1,9 @@
 package com.globant.equattrocchio.data;
 
+import android.support.v4.content.ContentResolverCompat;
+
 import com.activeandroid.ActiveAndroid;
+import com.activeandroid.content.ContentProvider;
 import com.globant.equattrocchio.data.response.Image;
 import com.globant.equattrocchio.data.response.Result;
 import com.globant.equattrocchio.data.service.api.SplashbaseApi;
@@ -29,8 +32,8 @@ public class ImagesServicesImpl extends com.activeandroid.app.Application implem
     @Override
     public void getLatestImagesUpdate(final Observer<List<Object>> observer) {
         Retrofit retrofit = new Retrofit.Builder().
-                baseUrl(URL).
-                addConverterFactory(GsonConverterFactory.create())
+                baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
         SplashbaseApi api = retrofit.create(SplashbaseApi.class);
         Call<Result> call = api.getImages();
@@ -40,9 +43,7 @@ public class ImagesServicesImpl extends com.activeandroid.app.Application implem
                 for (Image image : response.body().getImages()) {
                     image.save();
                 }
-                observer.onNext(new ArrayList<Object>(response.body().
-
-                        getImages()));
+                //observer.onNext(new ArrayList<Object>(response.body().getImages()));
             }
 
             @Override
@@ -54,6 +55,27 @@ public class ImagesServicesImpl extends com.activeandroid.app.Application implem
 
     @Override
     public void getLatestImages(final Observer<List<Object>> observer) {
+        Retrofit retrofit = new Retrofit.Builder().
+                baseUrl(URL).
+                addConverterFactory(GsonConverterFactory.create())
+                .build();
+        SplashbaseApi api = retrofit.create(SplashbaseApi.class);
+        Call<Result> call = api.getImages();
+        call.enqueue(new Callback<Result>() {
+            @Override
+            public void onResponse(Call<Result> call, Response<Result> response) {
+                observer.onNext(new ArrayList<Object>(response.body().getImages()));
+            }
+
+            @Override
+            public void onFailure(Call<Result> call, Throwable t) {
+                //todo: update the UI with a connection error message
+            }
+        });
+    }
+
+    @Override
+    public void getImagesFromProvider(final Observer<List<Object>> observer) {
         Retrofit retrofit = new Retrofit.Builder().
                 baseUrl(URL).
                 addConverterFactory(GsonConverterFactory.create())

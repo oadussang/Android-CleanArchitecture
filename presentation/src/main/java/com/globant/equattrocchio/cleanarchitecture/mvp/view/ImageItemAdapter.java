@@ -1,6 +1,5 @@
-package com.globant.equattrocchio.cleanarchitecture.mvp.view.base;
+package com.globant.equattrocchio.cleanarchitecture.mvp.view;
 
-import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnItemClick;
 
 public class ImageItemAdapter extends RecyclerView.Adapter<ImageItemAdapter.ImageItemViewHolder> {
     private List<Image> mData;
@@ -33,8 +31,7 @@ public class ImageItemAdapter extends RecyclerView.Adapter<ImageItemAdapter.Imag
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.cardview_imageitem, parent, false);
 
-        ImageItemViewHolder vh = new ImageItemViewHolder(v);
-        return vh;
+        return new ImageItemViewHolder(v);
     }
 
     @Override

@@ -1,12 +1,14 @@
 package com.globant.equattrocchio.data.response;
 
+import android.provider.BaseColumns;
+
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Table(name = "Images", id = "id")
+@Table(name = "Images", id = BaseColumns._ID)
 public class Image extends Model {
     @SerializedName("id")
     @Expose
