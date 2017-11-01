@@ -30,7 +30,8 @@ public class ImagesPresenter {
     }
 
     private void onListResponseReceived(List<Image> images) {
-        view.setCardViewList(images);
+        //view.setCardViewList(images);
+        view.resetLoader();
     }
 
     private void onImageResponseReceived(Image image) {

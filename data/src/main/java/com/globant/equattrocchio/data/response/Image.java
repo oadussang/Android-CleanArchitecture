@@ -1,12 +1,19 @@
 package com.globant.equattrocchio.data.response;
 
+import android.database.Cursor;
+import android.provider.BaseColumns;
+
+import com.activeandroid.Cache;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Table(name = "Images", id = "id")
+import java.util.List;
+
+@Table(name = "Images", id = BaseColumns._ID)
 public class Image extends Model {
     @SerializedName("id")
     @Expose
@@ -84,5 +91,19 @@ public class Image extends Model {
 
     public void setCopyright(String copyright) {
         this.copyright = copyright;
+    }
+
+    public static List<Image> getAll() {
+        return new Select()
+                .from(Image.class)
+                .orderBy("ImageId ASC")
+                .execute();
+    }
+
+    public static Cursor fetchAll() {
+        String tableName = Cache.getTableInfo(Image.class).getTableName();
+        String resultRecords = new Select(tableName + ".*").from(Image.class).toSql();
+        Cursor resultCursor = Cache.openDatabase().rawQuery(resultRecords, null);
+        return resultCursor;
     }
 }

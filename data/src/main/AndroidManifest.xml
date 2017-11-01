@@ -9,6 +9,12 @@
         <meta-data android:name="AA_DB_VERSION" android:value="1" />
         <meta-data android:name="AA_MODELS" android:value="com.globant.equattrocchio.data.response.Image" />
 
+        <provider
+            android:authorities="com.globant.equattrocchio.cleanarchitecture.provider"
+            android:name="com.globant.equattrocchio.data.content_providers.CleanArchProvider"
+            android:enabled="true"
+            android:exported="false"/>
+
     </application>
 
 

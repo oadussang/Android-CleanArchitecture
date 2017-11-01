@@ -3,6 +3,7 @@ package com.globant.equattrocchio.cleanarchitecture.mvp.view;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.support.v4.app.LoaderManager;
 import android.support.v7.app.AppCompatActivity;
 
 import java.lang.ref.WeakReference;
@@ -29,4 +30,11 @@ public class ActivityView {
         AppCompatActivity activity = getActivity();
         return (activity != null) ? activity.getFragmentManager() : null;
     }
+
+    @Nullable
+    LoaderManager getLoaderManager() {
+        AppCompatActivity activity = getActivity();
+        return (activity != null) ? activity.getSupportLoaderManager() : null;
+    }
+
 }
